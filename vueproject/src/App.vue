@@ -1,9 +1,7 @@
 <template>
-
   <div class="menu">
     <a v-for="(a,i) in menus" :key="i">{{a}}</a>
   </div>
-
   <div>
     <h4 v-for="(b,j) in products_object" :key="j">{{ j }}  {{ b }}</h4> 
     <p> 50 만원 </p>
