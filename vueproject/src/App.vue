@@ -3,22 +3,23 @@
     <a v-for="(a,i) in menus" :key="i">{{a}}</a>
   </div>
 
-  <!-- <div class = "black-bg">
+  <div class = "black-bg" v-if="modal == true">
     <div class="white-bg">
-      <h4>상세페이지</h4>
+      <h4 >상세페이지</h4>
       <p>상세페이지 내용</p>
+      <button @click="modal = false">닫기</button>
     </div>
-  </div> -->
+  </div>
 
 
 
   <div>
-    <img src="./assets/room1.jpg" class = "room-img">
-    <h4> {{ products[0] }} </h4>
-    <p> 50 만원 </p>
-    <button @click="increase(reportNum[0])">허위매물신고</button> <span>신고수 : {{reportNum[0]}} </span>
+    <!-- <img src="./assets/room1.jpg" class = "room-img"> -->
+    <img src="https://codingapple1.github.io/vue/room0.jpg" class = "room-img">
+    <h4> {{ roomdata[0].title }} </h4>
+    <p> {{ roomdata[0].price }} </p>
   </div>
-  <!-- <div>
+  <div>
     <img src="./assets/room2.jpg" class = "room-img">
     <h4> {{ products[1] }} </h4>
     <p> {{ anyPrice }} </p>
@@ -29,15 +30,21 @@
     <h4> {{ products[2] }} </h4>
     <p> {{ anyPrice }} </p>
     <button @click="increase">허위매물신고</button> <span>신고수 : {{reportNum[2]}} </span>
-  </div> -->
+  </div>
 </template>
 
 <script>
+
+import onerooms from './data.js'
+
+
 
 export default {
   name: 'App',
   data(){ // 데이터 바인딩을 하는 이유 : HTML에 하드코딩 해놓으면 나중에 데이터 변경이 어렵다. + 실시간 자동 렌더링 가능
     return {
+      roomdata : onerooms,
+      modal : false,
       menus : ['Home', 'Shop', 'About'],
       products : ['역삼동원룸','천호동원룸','마포구원룸'],
       reportNum : [0],
@@ -87,7 +94,7 @@ div {
 }
 
 .room-img {
-  width: 70%;
+  width: 30%;
   margin-top: 40px;
 }
 
