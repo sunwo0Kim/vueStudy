@@ -5,31 +5,19 @@
 
   <div class = "black-bg" v-if="modal == true">
     <div class="white-bg">
-      <h4 >상세페이지</h4>
-      <p>상세페이지 내용</p>
+      <img :src="roomdata[clickData].image" class = "room-img">
+      <h4 >{{ roomdata[clickData].title }}</h4>
+      <p>{{roomdata[clickData].content}} <br> {{roomdata[clickData].price}}</p>
       <button @click="modal = false">닫기</button>
     </div>
   </div>
 
 
 
-  <div>
-    <!-- <img src="./assets/room1.jpg" class = "room-img"> -->
-    <img src="https://codingapple1.github.io/vue/room0.jpg" class = "room-img">
-    <h4> {{ roomdata[0].title }} </h4>
-    <p> {{ roomdata[0].price }} </p>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class = "room-img">
-    <h4> {{ products[1] }} </h4>
-    <p> {{ anyPrice }} </p>
-    <button @click="increase(reportNum[0])">허위매물신고</button> <span>신고수 : {{reportNum[1]}} </span>
-  </div>
-  <div>
-    <img src="./assets/room3.jpg" class = "room-img">
-    <h4> {{ products[2] }} </h4>
-    <p> {{ anyPrice }} </p>
-    <button @click="increase">허위매물신고</button> <span>신고수 : {{reportNum[2]}} </span>
+  <div v-for="(a,i) in roomdata" :key="i">
+    <img :src="a.image" class = "room-img">
+    <h4 @click="modal = true; clickData = i"> {{ a.title }} </h4>
+    <p> {{ a.price }} </p>
   </div>
 </template>
 
@@ -43,6 +31,7 @@ export default {
   name: 'App',
   data(){ // 데이터 바인딩을 하는 이유 : HTML에 하드코딩 해놓으면 나중에 데이터 변경이 어렵다. + 실시간 자동 렌더링 가능
     return {
+      clickData : 0,
       roomdata : onerooms,
       modal : false,
       menus : ['Home', 'Shop', 'About'],
