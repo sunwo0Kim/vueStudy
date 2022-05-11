@@ -14,9 +14,9 @@
   style="height:50px;font-size:50px;margin-left:-200px;width:990px;">
 </div>
 
-<div class = "taskBox" v-if = "nowTasks.size != 0">
+<div class = "taskBox" v-if = "nowTasks != ''">
   <p>
-    console.log(nowTasks.size);
+    {{ nowTasks[0] }}
   </p>
 </div>
 
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       inputTask : "",
-      nowTasks : [],
+      nowTasks : [0,1],
     }
   },
   components: {
