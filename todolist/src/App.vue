@@ -6,17 +6,18 @@
 
 <div class = "greeting">
   <p>Good morning!</p>
-  <h4>You've got <br> X tasks</h4>
+  <h4>You've got <br> {{nowTasks.length}} tasks</h4>
 </div>
 
 <div class = "inputBox">
-  <input v-model.lazy = "inputTask" placeholder="Enter the task" 
-  style="height:50px;font-size:50px;margin-left:-200px;width:990px;">
+  <input v-model = "inputTask" placeholder="Enter the task" 
+  style="height:50px;font-size:50px;margin-left:-200px;width:990px;"
+  @keyup.enter="addTask(inputTask)">
 </div>
 
 <div class = "taskBox" v-if = "nowTasks != ''">
-  <p>
-    {{ nowTasks[0] }}
+  <p v-for="(a,i) in nowTasks" :key="i">
+    {{ nowTasks[i] }}
   </p>
 </div>
 
@@ -30,11 +31,17 @@ export default {
   data() {
     return {
       inputTask : "",
-      nowTasks : [0,1],
+      nowTasks : [],
     }
   },
   components: {
     
+  },
+  methods: {
+    addTask(inputTask) {
+      this.nowTasks.push(inputTask)
+      this.inputTask = ""      
+    }
   }
 }
 </script>
