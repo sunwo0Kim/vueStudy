@@ -1,17 +1,20 @@
 <template>
+  
+  <ModalWindow :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
+  
   <div class="menu">
     <a v-for="(a,i) in menus" :key="i">{{a}}</a>
   </div>
-
+   
   <DiscountBanner/>
-
-  <ModalWindow/>  
-
+  
   <div v-for="(a,i) in roomdata" :key="i">
     <img :src="a.image" class = "room-img">
     <h4 @click="modal = true; clickData = i"> {{ a.title }} </h4>
     <p> {{ a.price }} </p>
   </div>
+
+  
 </template>
 
 <script>
@@ -51,7 +54,7 @@ export default {
   },
   components: {
     DiscountBanner: DiscountBanner,
-    ModalWindow,
+    ModalWindow: ModalWindow
 }
 }
 </script>
