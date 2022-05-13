@@ -3,16 +3,9 @@
     <a v-for="(a,i) in menus" :key="i">{{a}}</a>
   </div>
 
-  <div class = "black-bg" v-if="modal == true">
-    <div class="white-bg">
-      <img :src="roomdata[clickData].image" class = "room-img">
-      <h4 >{{ roomdata[clickData].title }}</h4>
-      <p>{{roomdata[clickData].content}} <br> {{roomdata[clickData].price}}</p>
-      <button @click="modal = false">닫기</button>
-    </div>
-  </div>
+  <DiscountBanner/>
 
-
+  <ModalWindow/>  
 
   <div v-for="(a,i) in roomdata" :key="i">
     <img :src="a.image" class = "room-img">
@@ -24,7 +17,8 @@
 <script>
 
 import onerooms from './data.js'
-
+import DiscountBanner from './Discount.vue'
+import ModalWindow from './Modal.vue'
 
 
 export default {
@@ -56,8 +50,9 @@ export default {
     }
   },
   components: {
-    
-  }
+    DiscountBanner: DiscountBanner,
+    ModalWindow,
+}
 }
 </script>
 
@@ -68,6 +63,8 @@ body {
 div {
   box-sizing: border-box;
 }
+
+
 
 .black-bg {
   width: 100%; height: 100%;
