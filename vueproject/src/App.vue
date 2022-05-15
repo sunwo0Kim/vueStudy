@@ -1,17 +1,20 @@
 <template>
+  <div>
+    <ModalWindow :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
   
-  <ModalWindow :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
-  
-  <div class="menu">
-    <a v-for="(a,i) in menus" :key="i">{{a}}</a>
-  </div>
+    <div class="menu">
+      <a v-for="(a,i) in menus" :key="i">{{a}}</a>
+    </div>
    
-  <DiscountBanner/>
-  
-  <div v-for="(a,i) in roomdata" :key="i">
-    <img :src="a.image" class = "room-img">
-    <h4 @click="modal = true; clickData = i"> {{ a.title }} </h4>
-    <p> {{ a.price }} </p>
+    <DiscountBanner/>
+    
+    <Card :roomdata="roomdata" :clickData="clickData"/>
+    <!-- <div v-for="(a,i) in roomdata" :key="i">
+      <img :src="a.image" class = "room-img">
+      <h4 @click="modal = true; clickData = i"> {{ a.title }} </h4>
+      <p> {{ a.price }} </p>
+    </div> -->
+
   </div>
 
   
@@ -22,6 +25,7 @@
 import onerooms from './data.js'
 import DiscountBanner from './Discount.vue'
 import ModalWindow from './Modal.vue'
+import Card from './Card.vue'
 
 
 export default {
@@ -54,7 +58,8 @@ export default {
   },
   components: {
     DiscountBanner: DiscountBanner,
-    ModalWindow: ModalWindow
+    ModalWindow: ModalWindow,
+    Card: Card
 }
 }
 </script>
