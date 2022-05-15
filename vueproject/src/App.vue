@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ModalWindow :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
+    <ModalWindow @closeModal = "modal = false;" :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
   
     <div class="menu">
       <a v-for="(a,i) in menus" :key="i">{{a}}</a>
@@ -8,7 +8,7 @@
    
     <DiscountBanner/>
     
-    <Card :roomdata="roomdata" :clickData="clickData"/>
+    <Card @openModal="modal = true; clickData = $event" :roomdata="roomdata" :clickData="clickData"/>
     <!-- <div v-for="(a,i) in roomdata" :key="i">
       <img :src="a.image" class = "room-img">
       <h4 @click="modal = true; clickData = i"> {{ a.title }} </h4>

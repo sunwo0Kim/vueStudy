@@ -4,7 +4,7 @@
       <img :src="roomdata[clickData].image" class = "room-img">
       <h4 >{{ roomdata[clickData].title }}</h4>
       <p>{{roomdata[clickData].content}} <br> {{roomdata[clickData].price}}</p>
-      <!-- <button @click="modal = false">닫기</button> -->
+      <button @click="$emit('closeModal')">닫기</button>
     </div>
   </div>
 </template>
