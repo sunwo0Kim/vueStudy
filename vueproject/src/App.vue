@@ -9,6 +9,11 @@
     </div>
    
     <DiscountBanner/>
+
+    <button @click="priceSort">가격순정렬</button>
+    <button @click="idSort">이름순정렬</button>
+    <button @click="sortBack">되돌리기</button>
+    
     
     <Card @openModal="modal = true; clickData = $event" :roomdata="roomdata" :clickData="clickData"/>
     <!-- <div v-for="(a,i) in roomdata" :key="i">
@@ -36,6 +41,7 @@ export default {
     return {
       clickData : 0,
       roomdata : onerooms,
+      roomdataOrigin : [...onerooms],
       modal : false,
       menus : ['Home', 'Shop', 'About'],
       products : ['역삼동원룸','천호동원룸','마포구원룸'],
@@ -56,6 +62,19 @@ export default {
       this.reportNum[0]=num;
       return this.reportNum[0];
       
+    },
+    priceSort(){
+      this.roomdata.sort(function(a,b){
+        return b.price - a.price;
+      });
+    },
+    idSort(){
+      this.roomdata.sort(function(a,b){
+        return a.title.localeCompare(b.title);
+      });
+    },
+    sortBack(){
+      this.roomdata = [...this.roomdataOrigin];
     }
   },
   components: {
