@@ -1,7 +1,9 @@
 <template>
   <div>
-    <ModalWindow @closeModal = "modal = false;" :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
-  
+    <transition name="fade">
+      <ModalWindow @closeModal = "modal = false;" :roomdata="roomdata" :clickData="clickData" :modal="modal"/>  
+    </transition>
+      
     <div class="menu">
       <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
@@ -65,6 +67,35 @@ export default {
 </script>
 
 <style>
+/* .start {
+  opacity: 0;
+  transition: all 1s;
+}
+.end {
+  opacity: 1;
+} */
+
+.fade-enter-from {
+  transform: translateY(-1000px);
+} /*애니메이션 시작*/
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  transform: translateY(0px);
+} /*애니메이션 시작*/
+
+.fade-leave-from {
+  opacity : 1;
+} /*애니메이션 시작*/
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+} /*애니메이션 시작*/
+
+
 body {
   margin : 0
 }
