@@ -1,9 +1,8 @@
 <template>
   <div>
-    <button type="button" class="btn btn-primary">Primary</button>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,7 +16,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                글 목록
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -35,20 +34,32 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
+        
       </div>
     </nav>
+    <PostList :blogData="blogData"/>
+    
   </div>
   
 </template>
 
+
 <script>
+
+import PostList from './components/PostList.vue'
+import blogData from './blogData.js'
 
 
 export default {
   name: 'App',
+  data(){
+    return {
+      blogData : blogData,
+    }
+  },
   components: {
-    
-  }
+    PostList : PostList
+  },
 }
 </script>
 
