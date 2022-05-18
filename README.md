@@ -11,3 +11,6 @@ methods parameter 테스트
 
 # 2022-05-15
 component 및 props emit 문법 추가
+
+# 2022-05-18
+LifeCycle hook , Watcher 업데이트
