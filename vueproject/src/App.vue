@@ -7,8 +7,8 @@
     <div class="menu">
       <a v-for="(a,i) in menus" :key="i">{{a}}</a>
     </div>
-   
-    <DiscountBanner/>
+    
+    <DiscountBanner :discountRate="discountRate"/>
 
     <button @click="priceSort">가격순정렬</button>
     <button @click="idSort">이름순정렬</button>
@@ -39,6 +39,8 @@ export default {
   name: 'App',
   data(){ // 데이터 바인딩을 하는 이유 : HTML에 하드코딩 해놓으면 나중에 데이터 변경이 어렵다. + 실시간 자동 렌더링 가능
     return {
+      discountRate : 30,
+      showDiscount : true,
       clickData : 0,
       roomdata : onerooms,
       roomdataOrigin : [...onerooms],
@@ -77,11 +79,18 @@ export default {
       this.roomdata = [...this.roomdataOrigin];
     }
   },
+
+  mounted() {
+    setInterval(()=>{ // Arrow function
+      if(this.discountRate > 0) { this.discountRate -= 1; }
+    }, 1000);
+  },
+
   components: {
     DiscountBanner: DiscountBanner,
     ModalWindow: ModalWindow,
     Card: Card
-}
+  }
 }
 </script>
 

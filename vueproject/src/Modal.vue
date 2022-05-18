@@ -24,9 +24,9 @@ export default {
     },
     watch : {
       month(a){
-        let aNum = Number(a);
+        // let aNum = Number(a);
         
-        if(Number.isNaN(aNum)) {
+        if(isNaN(a)) {
           alert('문자열은 입력할 수 없습니다.')
           this.month = 1;
         }
@@ -36,6 +36,13 @@ export default {
       roomdata : Array,
       modal : Boolean,
       clickData : Number
+    },
+
+    beforeUpdate() {
+      if(this.month == 2){
+        alert('2개월은 안한다니까요~')
+        this.month = 3;
+      }
     }
 }
 </script>
