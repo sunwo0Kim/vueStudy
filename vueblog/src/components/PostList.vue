@@ -1,16 +1,32 @@
 <template>
   <div v-for="(a,i) in blogData" :key="i">
-      <h5>{{a.title}}</h5>
+      <router-link to="/postdetail/">{{a.title}}</router-link>
       <p>{{a.date}}</p>
   </div>
+ 
+
 </template>
 
 <script>
+
+
 export default {
     name : 'PostList',
-    props : {
-        blogData : Array
+    data(){
+        return {
+            clickDetailURL : '',
+            postNumber : 0
+        }
     },
+    props : {
+        blogData : Array,
+    },
+    methods : {
+        
+    },
+    components: {
+        
+    }
 }
 </script>
 

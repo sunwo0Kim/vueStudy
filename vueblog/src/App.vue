@@ -37,7 +37,15 @@
         
       </div>
     </nav>
-    <PostList :blogData="blogData"/>
+    
+    <router-link to="/">홈페이지<br></router-link>
+    <router-link to="/postlist">리스트페이지<br></router-link>
+    
+    <div class="mt-5">
+      <router-view :blogData="blogData"></router-view>
+    </div>
+    
+    <!-- <PostList :blogData="blogData"/> -->
     
   </div>
   
@@ -46,7 +54,7 @@
 
 <script>
 
-import PostList from './components/PostList.vue'
+// import PostList from './components/PostList.vue'
 import blogData from './blogData.js'
 
 
@@ -55,15 +63,17 @@ export default {
   data(){
     return {
       blogData : blogData,
+      clickBlogDetailNumber : 0
     }
   },
   components: {
-    PostList : PostList
+    // PostList : PostList
   },
 }
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
