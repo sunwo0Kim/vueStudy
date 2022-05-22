@@ -4,7 +4,7 @@
         
         <h5>{{blogData[$route.params.id].title}}</h5>
         <p>{{blogData[$route.params.id].content}}</p>
-        <p>{{$route}}</p>
+        
     </div>
 </template>
 

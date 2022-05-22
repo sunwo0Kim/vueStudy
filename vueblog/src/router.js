@@ -1,7 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
-import PostList from './components/PostList.vue'
-import MainHome from './components/MainHome.vue'
-import PostDetail from './components/PostDetail.vue'
+import PostList from './components/PostList.vue';
+import MainHome from './components/MainHome.vue';
+import PostDetail from './components/PostDetail.vue';
+import BlogComment from './components/BlogComment.vue';
+import AuthorName from './components/AuthorName.vue';
 
 const routes = [
   {
@@ -17,12 +19,12 @@ const routes = [
     component: PostDetail,
     children: [
       {
-        path: "/author",
-        component: PostDetail,
+        path: "author",
+        component: AuthorName,
       },
       {
-        path: "/comment",
-        component: PostDetail,
+        path: "comment",
+        component: BlogComment,
       }
     ]
   },
