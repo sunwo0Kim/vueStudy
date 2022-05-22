@@ -1,8 +1,11 @@
 <template>
-  <div v-for="(a,i) in blogData" :key="i">
-      <router-link to="/postdetail/">{{a.title}}</router-link>
-      <p>{{a.date}}</p>
-  </div>
+<div>
+    <div v-for="(a,i) in blogData" :key="i">
+        <router-link to="/postdetail/">{{a.title}}</router-link>
+        <p>{{a.date}}</p>
+    </div>
+</div>
+
  
 
 </template>
