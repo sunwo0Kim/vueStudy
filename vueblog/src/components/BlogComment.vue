@@ -1,10 +1,19 @@
 <template>
-  <p>댓글입니다.</p>
+  <div>
+    <h5>댓글입니다</h5>
+  </div>
 </template>
 
 <script>
-export default {
 
+console.log(11);
+
+export default {
+  methods : {
+    test(){
+      console.log(111);
+    }
+  }
 }
 </script>
 

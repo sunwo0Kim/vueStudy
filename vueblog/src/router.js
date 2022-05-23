@@ -7,14 +7,6 @@ import AuthorName from './components/AuthorName.vue';
 
 const routes = [
   {
-    path: "/",
-    component: MainHome,
-  },
-  {
-    path: "/postlist",
-    component: PostList,
-  },
-  {
     path: "/postdetail/:id",
     component: PostDetail,
     children: [
@@ -25,9 +17,18 @@ const routes = [
       {
         path: "comment",
         component: BlogComment,
-      }
-    ]
+      },
+    ],
   },
+  {
+    path: "/postlist",
+    component: PostList,
+  },
+  {
+    path: "/",
+    component: MainHome,
+  },
+  
 ];
 
 const router = createRouter({

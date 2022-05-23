@@ -1,7 +1,8 @@
 <template>
 <div>
     <div v-for="(a,i) in blogData" :key="i">
-        <router-link to="/postdetail/">{{a.title}}</router-link>
+        <h5 @click="$router.push('/postdetail/' + a.number)">{{a.title}}</h5>
+        <!-- <router-link to="/postdetail/">{{a.title}}</router-link> -->
         <p>{{a.date}}</p>
     </div>
 </div>
@@ -25,7 +26,10 @@ export default {
         blogData : Array,
     },
     methods : {
-        
+        modifyString(any) {
+            
+            return String(any); 
+        }
     },
     components: {
         
