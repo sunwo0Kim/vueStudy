@@ -26,10 +26,7 @@ export default {
         blogData : Array,
     },
     methods : {
-        modifyString(any) {
-            
-            return String(any); 
-        }
+        
     },
     components: {
         
