@@ -33,12 +33,13 @@
   style="z-index:1"
 /> -->
 
+<DateCalendar/>
+
 </template>
 
 <script>
 
-// import DatePick from 'vue-date-pick';
-// import VDatePicker from '../../node_modules/v-calendar/lib/components/date-picker.umd';
+import DateCalendar from './components/DateCalendar.vue'
 
 export default {
   name: 'App',
@@ -49,8 +50,8 @@ export default {
     }
   },
   components: {
-    
-  },
+    DateCalendar: DateCalendar,
+},
   methods: {
     addTask(inputTask) {
       this.nowTasks.push(inputTask)
