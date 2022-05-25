@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             <tr v-for="(row, index) in currentCalendarMatrix" :key="index">
-              <td @click="$emit('closeModal',inputDate(currentYear,currentMonth,day))" v-for="(day, index2) in row" :key="index2" style="padding:20px;">
+              <td  v-for="(day, index2) in row" :key="index2" style="padding:20px;">
                 <span @click="$emit('closeModal')" v-if="isToday(currentYear, currentMonth, day)" class="rounded">
                   {{day}}
                 </span>
