@@ -1,5 +1,12 @@
 <template>
 
+<div v-if="openModal == true">
+  <transition name="fade">
+    <DateCalendar @closeModal="openModal = false"/>
+  </transition>
+  
+</div>
+
 <div class = "headline">
   <h1>MyToDoList</h1>
 </div>
@@ -12,7 +19,7 @@
 <div class = "inputBox">
   <input v-model = "inputTask" placeholder="Enter the task" 
   style="height:50px;font-size:50px;margin-left:-200px;width:990px;"
-  @keyup.enter="addTask(inputTask)">
+  @keyup.enter="openModal = true">
 </div>
 
 <div class = "taskBox" v-if = "nowTasks != ''">
@@ -21,19 +28,8 @@
   </p>
 </div>
 
-<!-- <VDatePicker
-  locale="en"
-  title-position="left"
-  color="gray"
-  v-model="endDate"
-  @input="clickEndDate()"
-  :model-config="modelConfig"
-  is-required
-  :style="{display:isShowendCalendar}"
-  style="z-index:1"
-/> -->
 
-<DateCalendar/>
+
 
 </template>
 
@@ -47,6 +43,7 @@ export default {
     return {
       inputTask : "",
       nowTasks : [],
+      openModal : false
     }
   },
   components: {
@@ -116,6 +113,39 @@ div {
   width : 1500px;
   height : 800px;
 }
+
+.black-bg {
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  margin-top: 0px;
+  position: fixed; padding:20px;
+}
+
+.white-bg {
+  width: 100%; background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.fade-enter-from {
+  transform: translateY(-1000px);
+} /*애니메이션 시작*/
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  transform: translateY(0px);
+} /*애니메이션 시작*/
+
+.fade-leave-from {
+  opacity : 1;
+} /*애니메이션 시작*/
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+} /*애니메이션 시작*/
 
 
 

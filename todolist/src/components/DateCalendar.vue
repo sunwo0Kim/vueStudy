@@ -1,4 +1,6 @@
 <template>
+<div class = "black-bg">
+  <div class="white-bg">
   <div class="dateCalendar">
       <h2>
         <a href="#" v-on:click="onClickPrev(currentMonth)">◀</a>
@@ -27,6 +29,10 @@
           </tbody>
       </table>    
   </div>
+  </div>
+
+  <p><br><button @click="$emit('closeModal')">닫기</button></p>
+</div>
 </template>
 
 <script>
