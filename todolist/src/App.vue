@@ -2,7 +2,7 @@
 
 <div v-if="openModal == true">
   <transition name="fade">
-    <DateCalendar @closeModal="openModal = false" @inputDate="console.log('inputDate')"/>
+    <DateCalendar @closeModal="openModal = false" v-model="clickDate"/>
   </transition>
   
 </div>
@@ -20,6 +20,11 @@
   <input v-model = "inputTask" placeholder="Enter the task" 
   style="height:50px;font-size:50px;margin-left:-200px;width:990px;"
   @keyup.enter="openModal = true">
+</div>
+
+<!-- 임시 콘솔 -->
+<div>
+  {{clickDate}}
 </div>
 
 <div class = "taskBox" v-if = "nowTasks != ''">
@@ -43,7 +48,8 @@ export default {
     return {
       inputTask : "",
       nowTasks : [],
-      openModal : false
+      openModal : false,
+      clickDate : []
     }
   },
   components: {
