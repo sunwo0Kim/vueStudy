@@ -2,7 +2,7 @@
 
 <div v-if="openModal == true">
   <transition name="fade">
-    <DateCalendar @closeModal="openModal = false"/>
+    <DateCalendar @closeModal="openModal = false" @inputDate="console.log('inputDate')"/>
   </transition>
   
 </div>

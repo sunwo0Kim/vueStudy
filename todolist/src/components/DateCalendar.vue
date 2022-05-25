@@ -17,11 +17,11 @@
           </thead>
           <tbody>
             <tr v-for="(row, index) in currentCalendarMatrix" :key="index">
-              <td v-for="(day, index2) in row" :key="index2" style="padding:20px;">
-                <span v-if="isToday(currentYear, currentMonth, day)" class="rounded">
+              <td @click="$emit('closeModal',inputDate(currentYear,currentMonth,day))" v-for="(day, index2) in row" :key="index2" style="padding:20px;">
+                <span @click="$emit('closeModal')" v-if="isToday(currentYear, currentMonth, day)" class="rounded">
                   {{day}}
                 </span>
-                <span v-else>
+                <span @click="$emit('closeModal')" v-else>
                   {{day}}
                 </span>
               </td>
@@ -56,6 +56,7 @@ export default {
   mounted(){
       this.init();
   },
+  emits: ['closeModal','inputDate'],
   methods: {
       init:function(){
         this.currentMonthStartWeekIndex = this.getStartWeek(this.currentYear, this.currentMonth);
@@ -161,6 +162,10 @@ export default {
       isToday: function(year, month, day){
         var date = new Date();
         return year == date.getFullYear() && month == date.getMonth()+1 && day == date.getDate(); 
+      },
+      inputDate: function(year, month, day) {
+        var clickDate = [year,month,day];
+        return clickDate; 
       }
   }
 }
