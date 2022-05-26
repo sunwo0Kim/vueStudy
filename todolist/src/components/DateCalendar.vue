@@ -18,10 +18,10 @@
           <tbody>
             <tr v-for="(row, index) in currentCalendarMatrix" :key="index">
               <td  v-for="(day, index2) in row" :key="index2" style="padding:20px;">
-                <span @click="[$emit('closeModal'), changeClickDate(currentYear, currentMonth, day)]" v-if="isToday(currentYear, currentMonth, day)" class="rounded">
+                <span @click="[$emit('closeModal'),changeClickDate(currentYear, currentMonth, day)]" v-if="isToday(currentYear, currentMonth, day)" class="rounded">
                   {{day}}
                 </span>
-                <span @click="$emit('closeModal')" v-else>
+                <span @click="[$emit('closeModal'),updateTask(changeClickDate(currentYear, currentMonth, day))]" v-else>
                   {{day}}
                 </span>
               </td>
@@ -57,13 +57,19 @@ export default {
       this.init();
   },
   props : {
-    clickDate : Array
+    clickDate : Array,
+    inputTask : String,
+    nowTasks : Array,
   },
-  emits: ['closeModal','inputDate'],
+  emits: ['closeModal'],
   methods: {
       changeClickDate : function(year, month, day) {
-        this.$emit(this.clickDate,[year,month,day]);
-        return this.clickDate;
+        if(this.clickDate.length != 0) {this.clickDate.length = 0;}
+        this.clickDate.push(year,month,day);      
+        this.$emit('updateClickDate',this.clickDate);
+      },
+      updateTask : function(click) {
+        this.$emit('addTask',(this.inputTask,click))
       },
       init:function(){
         this.currentMonthStartWeekIndex = this.getStartWeek(this.currentYear, this.currentMonth);
@@ -170,10 +176,6 @@ export default {
         var date = new Date();
         return year == date.getFullYear() && month == date.getMonth()+1 && day == date.getDate(); 
       },
-      inputDate: function(year, month, day) {
-        var clickDate = [year,month,day];
-        return clickDate; 
-      }
   }
 }
 </script>

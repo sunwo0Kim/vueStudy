@@ -2,7 +2,7 @@
 
 <div v-if="openModal == true">
   <transition name="fade">
-    <DateCalendar @closeModal="openModal = false" v-model="clickDate"/>
+    <DateCalendar @closeModal="openModal = false" v-bind:clickDate="clickDate"/>
   </transition>
   
 </div>
@@ -25,6 +25,7 @@
 <!-- 임시 콘솔 -->
 <div>
   {{clickDate}}
+  {{nowTasks}}
 </div>
 
 <div class = "taskBox" v-if = "nowTasks != ''">
@@ -56,9 +57,13 @@ export default {
     DateCalendar: DateCalendar,
 },
   methods: {
-    addTask(inputTask) {
-      this.nowTasks.push(inputTask)
+    addTask(clickDate) {
+      console.log(this.inputTask,this.clickDate);
+      this.nowTasks.push(this.inputTask,clickDate)
       this.inputTask = ""      
+    },
+    updateClickDate(clickDateFromCalendar) {
+      this.clickDate = clickDateFromCalendar;
     }
   }
 }
