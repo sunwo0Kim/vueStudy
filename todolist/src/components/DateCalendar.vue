@@ -51,6 +51,7 @@ export default {
       currentCalendarMatrix: [],
       endOfDay: null,
       memoDatas: [],
+      tempClickDate : []
     }
   },
   mounted(){
@@ -61,15 +62,18 @@ export default {
     inputTask : String,
     nowTasks : Array,
   },
-  emits: ['closeModal'],
+  emits: ['closeModal','updateClickDate','addTask'],
   methods: {
       changeClickDate : function(year, month, day) {
-        if(this.clickDate.length != 0) {this.clickDate.length = 0;}
-        this.clickDate.push(year,month,day);      
-        this.$emit('updateClickDate',this.clickDate);
+        var tempClickDate = [];
+        
+        tempClickDate.push(year,month,day);
+                
+        return tempClickDate;
       },
       updateTask : function(click) {
-        this.$emit('addTask',(this.inputTask,click))
+        this.nowTasks.push(this.inputTask,click);
+       
       },
       init:function(){
         this.currentMonthStartWeekIndex = this.getStartWeek(this.currentYear, this.currentMonth);
