@@ -62,7 +62,7 @@ export default {
     inputTask : String,
     nowTasks : Array,
   },
-  emits: ['closeModal','updateClickDate','addTask'],
+  emits: ['closeModal','updateClickDate','addTask','clearInputTask'],
   methods: {
       changeClickDate : function(year, month, day) {
         var tempClickDate = [];
@@ -72,8 +72,12 @@ export default {
         return tempClickDate;
       },
       updateTask : function(click) {
-        this.nowTasks.push(this.inputTask,click);
-       
+        var tempNowTask = {
+          inputTask : this.inputTask,
+          clickDate : click
+        }
+        this.nowTasks.push(tempNowTask);
+        this.$emit('clearInputTask', this.inputTask);
       },
       init:function(){
         this.currentMonthStartWeekIndex = this.getStartWeek(this.currentYear, this.currentMonth);

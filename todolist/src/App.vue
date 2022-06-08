@@ -19,7 +19,7 @@
 <div class = "inputBox">
   <input v-model = "inputTask" placeholder="Enter the task" 
   style="height:50px;font-size:50px;margin-left:-200px;width:990px;"
-  @keyup.enter="openModal = true">
+  @keyup.enter="checkEmptyInputTask(inputTask)">
 </div>
 
 <!-- 임시 콘솔 -->
@@ -31,7 +31,7 @@
 
 <div class = "taskBox" v-if = "nowTasks != ''">
   <p v-for="(a,i) in nowTasks" :key="i">
-    {{ nowTasks[i] }}
+    {{ nowTasks[i].inputTask }}
   </p>
 </div>
 
@@ -66,7 +66,18 @@ export default {
     // },
     updateClickDate(clickDateFromCalendar) {
       this.clickDate = clickDateFromCalendar;
-      console.log(this.clickDate);
+    },
+
+    checkEmptyInputTask(inputTask) {
+      if(inputTask == '') {alert('할 일을 입력해주세요.')}
+      else{
+        this.openModal = true;
+      }
+    },
+
+    clearInputTask(inputTask){
+      this.inputTask = inputTask;
+      this.inputTask = '';
     }
   }
 }
