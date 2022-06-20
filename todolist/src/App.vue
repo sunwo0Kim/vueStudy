@@ -24,14 +24,23 @@
 
 <!-- 임시 콘솔 -->
 <div>
-  {{clickDate}}
+  <!-- {{clickDate}}
   {{inputTask}}
-  {{nowTasks}}
+  {{nowTasks}} -->
 </div>
 
 <div class = "taskBox" v-if = "nowTasks != ''">
   <p v-for="(a,i) in nowTasks" :key="i">
     {{ nowTasks[i].inputTask }}
+    <br>
+    
+    {{"Date : "}}
+    {{ nowTasks[i].clickDate[0] }}
+    {{"/"}}
+    {{ nowTasks[i].clickDate[1] }}
+    {{"/"}}
+    {{ nowTasks[i].clickDate[2] }}
+    <button @click = "deleteTask(i)">삭제</button>
   </p>
 </div>
 
@@ -78,6 +87,11 @@ export default {
     clearInputTask(inputTask){
       this.inputTask = inputTask;
       this.inputTask = '';
+    },
+
+    deleteTask(i) {
+      console.log(i);
+      this.nowTasks.splice(i,1);
     }
   }
 }
