@@ -10,7 +10,9 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :postdata="postdata" />
+    <Container :postdata="postdata" :step="step" />
+
+    <button @click="more">더보기</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
@@ -18,24 +20,42 @@
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
+
+    
+    <button @click="step = 0">버튼0</button>
+    <button @click="step = 1">버튼1</button>
+    <button @click="step = 2">버튼2</button>
   </div>
 </template>
 
 <script>
-
-import Container from './components/Container.vue'
-import postdata from './assets/postdata.js'
+import Container from "./components/Container.vue";
+import postdata from "./assets/postdata.js";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    Container : Container
+    Container: Container,
   },
-  data(){
+  data() {
     return {
-      postdata : postdata,
-    }
-  }
+      postdata: postdata,
+      buttonClickNum: 0,
+      step : 0
+    };
+  },
+  methods: {
+    more() {
+      console.log(this.buttonClickNum);
+      axios
+        .get(`https://codingapple1.github.io/vue/more${this.buttonClickNum}.json`)
+        .then((result) => {         
+          this.postdata.push(result.data);
+          this.buttonClickNum++;
+        });
+    },
+  },
 };
 </script>
 
